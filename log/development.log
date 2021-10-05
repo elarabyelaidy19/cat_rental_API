@@ -933,3 +933,306 @@ Processing by CatsController#index as HTML
 Completed 200 OK in 2424ms (Views: 2238.1ms | ActiveRecord: 22.8ms | Allocations: 36965)
 
 
+Started GET "/" for ::1 at 2021-10-05 17:54:43 +0200
+Started GET "/" for ::1 at 2021-10-05 17:54:43 +0200
+  [1m[35m (76.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/cats" for ::1 at 2021-10-05 17:54:45 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (96.2ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 217.4ms | Allocations: 6230)
+  Rendered layout layouts/application.html.erb (Duration: 3400.6ms | Allocations: 18163)
+Completed 200 OK in 3928ms (Views: 3426.4ms | ActiveRecord: 164.5ms | Allocations: 24467)
+
+
+Started GET "/cats/1" for ::1 at 2021-10-05 17:55:16 +0200
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (1.4ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering cats/show.html.erb within layouts/application
+  [1m[36mUser Load (21.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCatRentalRequest Exists? (108.5ms)[0m  [1m[34mSELECT 1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT $2[0m  [["cat_id", 1], ["LIMIT", 1]]
+  Rendered cats/show.html.erb within layouts/application (Duration: 805.2ms | Allocations: 15504)
+  Rendered layout layouts/application.html.erb (Duration: 1107.0ms | Allocations: 19566)
+Completed 200 OK in 1187ms (Views: 982.3ms | ActiveRecord: 141.9ms | Allocations: 21476)
+
+
+Started GET "/cats" for ::1 at 2021-10-05 17:55:33 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (2.7ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 10.3ms | Allocations: 578)
+  Rendered layout layouts/application.html.erb (Duration: 431.3ms | Allocations: 4560)
+Completed 200 OK in 442ms (Views: 436.9ms | ActiveRecord: 2.7ms | Allocations: 5037)
+
+
+Started GET "/cats/new" for ::1 at 2021-10-05 17:55:44 +0200
+Processing by CatsController#new as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_user! rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.0ms | Allocations: 351)
+
+
+Started GET "/session/new" for ::1 at 2021-10-05 17:55:44 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 15.3ms | Allocations: 214)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 56.5ms | Allocations: 677)
+  Rendered layout layouts/application.html.erb (Duration: 484.8ms | Allocations: 4713)
+Completed 200 OK in 518ms (Views: 516.0ms | ActiveRecord: 0.0ms | Allocations: 5798)
+
+
+Started POST "/session" for ::1 at 2021-10-05 17:55:48 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"M9yt6K1k/oOiicCr4ZcT6iIyBOXWuLCFlfsK9iWo7WapKQF5tKwLtIAdaoRmBin0QzMA8yO0c/Gt3rWmRFAQOg==", "user"=>{"username"=>"elaraby", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "elaraby"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "elaraby"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["updated_at", "2021-10-05 15:55:48.742907"], ["id", 1]]
+  [1m[36mTRANSACTION (58.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 587ms (ActiveRecord: 70.0ms | Allocations: 3411)
+
+
+Started GET "/cats" for ::1 at 2021-10-05 17:55:48 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (1.2ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 7.9ms | Allocations: 571)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  Rendered layout layouts/application.html.erb (Duration: 364.5ms | Allocations: 4957)
+Completed 200 OK in 368ms (Views: 364.5ms | ActiveRecord: 2.4ms | Allocations: 5432)
+
+
+Started GET "/cats/new" for ::1 at 2021-10-05 17:55:56 +0200
+Processing by CatsController#new as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering cats/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.2ms | Allocations: 55)
+  Rendered cats/_form.html.erb (Duration: 5.9ms | Allocations: 544)
+  Rendered cats/new.html.erb within layouts/application (Duration: 23.9ms | Allocations: 993)
+  Rendered layout layouts/application.html.erb (Duration: 358.5ms | Allocations: 4964)
+Completed 200 OK in 386ms (Views: 379.9ms | ActiveRecord: 1.6ms | Allocations: 5994)
+
+
+Started POST "/cats" for ::1 at 2021-10-05 17:57:16 +0200
+Processing by CatsController#create as HTML
+  Parameters: {"authenticity_token"=>"praHzkKIMMEP0Q5EWWVjvFWr+RMWOiqsMSAWRIww3GE8QytfW0DF9i1FpGve9FmiNKr9BeM26dgJBakU7cghPQ==", "cat"=>{"name"=>"dsfdsf", "birth_date"=>"2223-11-22", "color"=>"white", "sex"=>"M", "description"=>"ewqdsad"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+DEPRECATION WARNING: Calling `<<` to an ActiveModel::Errors message array in order to add an error is deprecated. Please call `ActiveModel::Errors#add` instead. (called from birth_date_in_the_past at /mnt/f/github/Cat_Renal_API/app/models/cat.rb:32)
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[31mROLLBACK[0m
+  Rendering layout layouts/application.html.erb
+  Rendering cats/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.3ms | Allocations: 51)
+  Rendered cats/_form.html.erb (Duration: 0.9ms | Allocations: 148)
+  Rendered cats/new.html.erb within layouts/application (Duration: 18.1ms | Allocations: 354)
+  Rendered layout layouts/application.html.erb (Duration: 449.1ms | Allocations: 4458)
+Completed 200 OK in 909ms (Views: 461.8ms | ActiveRecord: 31.4ms | Allocations: 20100)
+
+
+Started POST "/cats" for ::1 at 2021-10-05 17:57:38 +0200
+Processing by CatsController#create as HTML
+  Parameters: {"authenticity_token"=>"aI8CSVTNkUENtKEcZZnjXk8P5K6Ox3OYXe9Wswcyzqvyeq7YTQVkdi8gCzPiCNlALg7guHvLsOxlyunjZsoz9w==", "cat"=>{"name"=>"dsfdsf", "birth_date"=>"2012-11-22", "color"=>"white", "sex"=>"M", "description"=>"ewqdsad"}}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCat Create (37.0ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "sex", "name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2012-11-22"], ["color", "white"], ["sex", "M"], ["name", "dsfdsf"], ["description", "ewqdsad"], ["created_at", "2021-10-05 15:57:38.993747"], ["updated_at", "2021-10-05 15:57:38.993747"], ["user_id", 1]]
+  [1m[36mTRANSACTION (43.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/cats/2
+Completed 302 Found in 124ms (ActiveRecord: 86.5ms | Allocations: 2616)
+
+
+Started GET "/cats/2" for ::1 at 2021-10-05 17:57:39 +0200
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCat Load (1.2ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering cats/show.html.erb within layouts/application
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  [1m[36mCatRentalRequest Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT $2[0m  [["cat_id", 2], ["LIMIT", 1]]
+  Rendered cats/show.html.erb within layouts/application (Duration: 127.5ms | Allocations: 4324)
+  Rendered layout layouts/application.html.erb (Duration: 435.5ms | Allocations: 8323)
+Completed 200 OK in 447ms (Views: 429.5ms | ActiveRecord: 10.2ms | Allocations: 9316)
+
+
+Started GET "/cats" for ::1 at 2021-10-05 18:04:54 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (1.7ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 64.5ms | Allocations: 7746)
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  Rendered layout layouts/application.html.erb (Duration: 528.5ms | Allocations: 16152)
+Completed 200 OK in 650ms (Views: 531.3ms | ActiveRecord: 28.6ms | Allocations: 18451)
+
+
+Started GET "/cats/new" for ::1 at 2021-10-05 18:04:57 +0200
+Processing by CatsController#new as HTML
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering cats/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.4ms | Allocations: 55)
+  Rendered cats/_form.html.erb (Duration: 1.1ms | Allocations: 144)
+  Rendered cats/new.html.erb within layouts/application (Duration: 6.9ms | Allocations: 369)
+  Rendered layout layouts/application.html.erb (Duration: 373.3ms | Allocations: 4684)
+Completed 200 OK in 397ms (Views: 380.1ms | ActiveRecord: 2.0ms | Allocations: 5592)
+
+
+Started GET "/cats" for ::1 at 2021-10-05 18:10:53 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (2.9ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 71.7ms | Allocations: 3947)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  Rendered layout layouts/application.html.erb (Duration: 537.6ms | Allocations: 8473)
+Completed 200 OK in 543ms (Views: 540.8ms | ActiveRecord: 40.2ms | Allocations: 8946)
+
+
+Started GET "/cats" for ::1 at 2021-10-05 18:10:54 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (2.4ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 11.6ms | Allocations: 613)
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  Rendered layout layouts/application.html.erb (Duration: 610.2ms | Allocations: 4912)
+Completed 200 OK in 621ms (Views: 613.9ms | ActiveRecord: 4.9ms | Allocations: 5386)
+
+
+Started DELETE "/session" for ::1 at 2021-10-05 18:11:04 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"PRCYdtYCHbpEjoK2Impb09wFj0bEMuTxjZyKNoPWCgin5TTnz8rojWYaKJml+2HNvQSLUDE+J4W1uTVm4i73VA=="}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "gIHbxDXwpbh_kvr89IJ2HQ"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "elaraby"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "vEF_EsafiEidOTbmPe6Gvw"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Update (2.8ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "vEF_EsafiEidOTbmPe6Gvw"], ["updated_at", "2021-10-05 16:11:04.413078"], ["id", 1]]
+  [1m[36mTRANSACTION (77.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 212ms (ActiveRecord: 91.2ms | Allocations: 2763)
+
+
+Started GET "/session/new" for ::1 at 2021-10-05 18:11:04 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.3ms | Allocations: 56)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.4ms | Allocations: 230)
+  Rendered layout layouts/application.html.erb (Duration: 444.8ms | Allocations: 4265)
+Completed 200 OK in 452ms (Views: 450.0ms | ActiveRecord: 0.0ms | Allocations: 4893)
+
+
+Started GET "/" for ::1 at 2021-10-05 21:57:19 +0200
+Started GET "/" for ::1 at 2021-10-05 21:57:20 +0200
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/cats" for ::1 at 2021-10-05 21:57:20 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (2.2ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 50.6ms | Allocations: 6279)
+  Rendered layout layouts/application.html.erb (Duration: 1096.5ms | Allocations: 17077)
+Completed 200 OK in 1379ms (Views: 1185.9ms | ActiveRecord: 14.9ms | Allocations: 23516)
+
+
+Started GET "/cats/new" for ::1 at 2021-10-05 21:57:40 +0200
+Processing by CatsController#new as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_user! rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms | Allocations: 353)
+
+
+Started GET "/session/new" for ::1 at 2021-10-05 21:57:41 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 3.9ms | Allocations: 214)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 19.0ms | Allocations: 680)
+  Rendered layout layouts/application.html.erb (Duration: 246.5ms | Allocations: 4781)
+Completed 200 OK in 263ms (Views: 261.5ms | ActiveRecord: 0.0ms | Allocations: 5870)
+
+
+Started POST "/session" for ::1 at 2021-10-05 21:57:43 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"6DLhCgmD81QqtUBwOz1hu6X27ByLcY/kDpDdrCEIXZlyx02bEEsGYwgh6l+8rFulxPfoCn59TJA2tWL8QPCgxQ==", "user"=>{"username"=>"elaraby", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "elaraby"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "elaraby"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "l-bwrF4NsxkHTdsLlMdANw"], ["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Update (3.1ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "l-bwrF4NsxkHTdsLlMdANw"], ["updated_at", "2021-10-05 19:57:43.926524"], ["id", 1]]
+  [1m[36mTRANSACTION (27.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 470ms (ActiveRecord: 46.8ms | Allocations: 8651)
+
+
+Started GET "/cats" for ::1 at 2021-10-05 21:57:44 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (2.7ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 11.8ms | Allocations: 614)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "l-bwrF4NsxkHTdsLlMdANw"], ["LIMIT", 1]]
+  Rendered layout layouts/application.html.erb (Duration: 320.0ms | Allocations: 5000)
+Completed 200 OK in 324ms (Views: 318.8ms | ActiveRecord: 3.9ms | Allocations: 5476)
+
+
+Started GET "/cats/new" for ::1 at 2021-10-05 21:57:47 +0200
+Processing by CatsController#new as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "l-bwrF4NsxkHTdsLlMdANw"], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering cats/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.2ms | Allocations: 55)
+  Rendered cats/_form.html.erb (Duration: 5.0ms | Allocations: 551)
+  Rendered cats/new.html.erb within layouts/application (Duration: 25.7ms | Allocations: 1000)
+  Rendered layout layouts/application.html.erb (Duration: 277.9ms | Allocations: 4971)
+Completed 200 OK in 311ms (Views: 299.4ms | ActiveRecord: 2.2ms | Allocations: 6002)
+
+
+Started POST "/cats" for ::1 at 2021-10-05 21:58:13 +0200
+Processing by CatsController#create as HTML
+  Parameters: {"authenticity_token"=>"xSgCBvrplaXlbmfA/iwCqCvJDeakVIONG4yvzH74wGFf3a6X4yFgksf6ze95vTi2SsgJ8FFYQPkjqRCcHwA9PQ==", "cat"=>{"name"=>"weez", "birth_date"=>"2010-02-01", "color"=>"orange", "sex"=>"F", "description"=>"beeeeeeb"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "l-bwrF4NsxkHTdsLlMdANw"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCat Create (2.3ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "sex", "name", "description", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2010-02-01"], ["color", "orange"], ["sex", "F"], ["name", "weez"], ["description", "beeeeeeb"], ["created_at", "2021-10-05 19:58:14.166314"], ["updated_at", "2021-10-05 19:58:14.166314"], ["user_id", 1]]
+  [1m[36mTRANSACTION (24.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/cats/3
+Completed 302 Found in 232ms (ActiveRecord: 31.6ms | Allocations: 7894)
+
+
+Started GET "/cats/3" for ::1 at 2021-10-05 21:58:14 +0200
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCat Load (1.0ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering cats/show.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "l-bwrF4NsxkHTdsLlMdANw"], ["LIMIT", 1]]
+  [1m[36mCatRentalRequest Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT $2[0m  [["cat_id", 3], ["LIMIT", 1]]
+  Rendered cats/show.html.erb within layouts/application (Duration: 110.4ms | Allocations: 7166)
+  Rendered layout layouts/application.html.erb (Duration: 333.6ms | Allocations: 11147)
+Completed 200 OK in 351ms (Views: 337.1ms | ActiveRecord: 8.4ms | Allocations: 12251)
+
+
+Started GET "/cats" for ::1 at 2021-10-05 21:58:19 +0200
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (1.1ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 655)
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "l-bwrF4NsxkHTdsLlMdANw"], ["LIMIT", 1]]
+  Rendered layout layouts/application.html.erb (Duration: 304.0ms | Allocations: 4959)
+Completed 200 OK in 308ms (Views: 303.0ms | ActiveRecord: 3.4ms | Allocations: 5434)
+
+
